@@ -12,7 +12,7 @@ class CpuMarker:
             self,
             node_name='cpu_usage_marker',
             frame_id='rb1_base_map',
-            topic_to_suscribe='/system_monitor/diagnostics',
+            topic_to_subscribe='/system_monitor/diagnostics',
             publish_topic_name='cpu_usage_marker',
     ):
         try:
@@ -32,12 +32,12 @@ class CpuMarker:
             self._frame_id = frame_id
 
         try:
-            self._topic_to_suscribe = rospy.get_param(
-                '~topic_to_suscribe',
-                topic_to_suscribe
+            self._topic_to_subscribe = rospy.get_param(
+                '~topic_to_subscribe',
+                topic_to_subscribe
             )
         except NameError:
-            self._topic_to_suscribe = topic_to_suscribe
+            self._topic_to_subscribe = topic_to_subscribe
 
         try:
             self._publish_topic_name = rospy.get_param(
@@ -58,7 +58,7 @@ class CpuMarker:
 
         rospy.init_node(self._node_name)
         self._cpu_usage = rospy.Subscriber(
-            name=self._topic_to_suscribe,
+            name=self._topic_to_subscribe,
             data_class=Diagnostic,
             callback=self.show_cpu_usage
         )
