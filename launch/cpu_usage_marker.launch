@@ -1,0 +1,56 @@
+<launch>
+	<arg
+		name="output"
+		type="str"
+		default="$(optenv CPU_MARKER_OUTPUT screen)"
+	/>
+	<arg
+		name="debug"
+		type="bool"
+		default="$(optenv CPU_MARKER_DEBUG false)"
+	/>
+	<arg
+		name="node_name"
+		type="str"
+		default="$(optenv CPU_MARKER_NODE_NAME rviz_cpu_usage_marker)"
+	/>
+	<arg
+		name="topic_to_suscribe"
+		type="str"
+		default="$(optenv CPU_MARKER_TOPIC_TO_SUSCRIBE /system_monitor/diagnostics)"
+	/>
+	<arg
+		name="publish_topic_name"
+		type="str"
+		default="$(optenv CPU_MARKER_PUBLISH_TOPIC_NAME cpu_usage_marker)"
+	/>
+	<arg
+		name="frame_id"
+		type="str"
+		default="$(optenv CPU_MARKER_FRAME_ID rb1_base_map)"
+	/>
+
+	<node
+		pkg="rviz_cpu_usage_marker"
+		type="cpu_usage_marker.py"
+		name="$(arg node_name)"
+		output="$(arg output)"
+	>
+		<param
+			name="topic_to_suscribe"
+			value="$(arg topic_to_suscribe)"
+		 />
+		 <param
+			name="publish_topic_name"
+			value="$(arg publish_topic_name)"
+		 />
+		 <param
+			name="frame_id"
+			value="$(arg frame_id)"
+		 />
+		 <param
+			name="debug"
+			value="$(arg debug)"
+		 />
+	</node>
+</launch>
