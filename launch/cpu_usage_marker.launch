@@ -29,7 +29,14 @@
 		type="str"
 		default="$(optenv CPU_MARKER_FRAME_ID rb1_base_map)"
 	/>
-
+	<include
+		file="$(find system_monitor)/launch/system_monitor.launch"
+	>
+		<arg name="launch_hdd" value="false" />
+		<arg name="launch_mem" value="false" />
+		<arg name="launch_ntp" value="false" />
+		<arg name="launch_net" value="false" />
+	</include>
 	<node
 		pkg="rviz_cpu_usage_marker"
 		type="cpu_usage_marker.py"
