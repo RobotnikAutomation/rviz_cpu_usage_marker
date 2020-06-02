@@ -51,10 +51,13 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rospy</build_depend>
   <build_depend>system_monitor</build_depend>
+  <build_depend>visualization_msgs</build_depend>
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>system_monitor</build_export_depend>
+  <build_depend>visualization_msgs</build_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>system_monitor</exec_depend>
+  <exec_depend>visualization_msgs</exec_depend>
   <exec_depend>message_runtime</exec_depend>
 
 
