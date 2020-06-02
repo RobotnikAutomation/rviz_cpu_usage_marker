@@ -1,35 +1,36 @@
 <launch>
 	<arg
 		name="output"
-		type="str"
 		default="$(optenv CPU_MARKER_OUTPUT screen)"
 	/>
 	<arg
 		name="debug"
-		type="bool"
 		default="$(optenv CPU_MARKER_DEBUG false)"
 	/>
 	<arg
 		name="node_name"
-		type="str"
 		default="$(optenv CPU_MARKER_NODE_NAME rviz_cpu_usage_marker)"
 	/>
 	<arg
-		name="topic_to_suscribe"
-		type="str"
-		default="$(optenv CPU_MARKER_TOPIC_TO_SUSCRIBE /system_monitor/diagnostics)"
+		name="topic_to_subscribe"
+		default="$(optenv CPU_MARKER_TOPIC_TO_SUBSCRIBE /system_monitor/diagnostics)"
 	/>
 	<arg
 		name="publish_topic_name"
-		type="str"
 		default="$(optenv CPU_MARKER_PUBLISH_TOPIC_NAME cpu_usage_marker)"
 	/>
 	<arg
 		name="frame_id"
-		type="str"
 		default="$(optenv CPU_MARKER_FRAME_ID rb1_base_map)"
 	/>
-
+	<include
+		file="$(find system_monitor)/launch/system_monitor.launch"
+	>
+		<arg name="launch_hdd" value="false" />
+		<arg name="launch_mem" value="false" />
+		<arg name="launch_ntp" value="false" />
+		<arg name="launch_net" value="false" />
+	</include>
 	<node
 		pkg="rviz_cpu_usage_marker"
 		type="cpu_usage_marker.py"
@@ -37,8 +38,8 @@
 		output="$(arg output)"
 	>
 		<param
-			name="topic_to_suscribe"
-			value="$(arg topic_to_suscribe)"
+			name="topic_to_subscribe"
+			value="$(arg topic_to_subscribe)"
 		 />
 		 <param
 			name="publish_topic_name"
