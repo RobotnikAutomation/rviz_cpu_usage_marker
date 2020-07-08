@@ -15,14 +15,7 @@ class CpuMarker:
             topic_to_subscribe='/system_monitor/diagnostics',
             publish_topic_name='cpu_usage_marker',
     ):
-        try:
-            self._node_name = rospy.get_param(
-                '~node_name',
-                node_name
-            )
-        except NameError:
-            self._node_name = node_name
-
+        rospy.init_node(node_name)
         try:
             self._frame_id = rospy.get_param(
                 '~frame_id',
@@ -56,7 +49,6 @@ class CpuMarker:
         except NameError:
             self._debug = False
 
-        rospy.init_node(self._node_name)
         self._cpu_usage = rospy.Subscriber(
             name=self._topic_to_subscribe,
             data_class=Diagnostic,
@@ -73,7 +65,7 @@ class CpuMarker:
             lifetime=rospy.Duration(1.5),
             pose=Pose(Point(0, 0, 0), Quaternion(0, 0, 0, 1)),
             scale=Vector3(1, 1, 1),
-            header=Header(frame_id=frame_id),
+            header=Header(frame_id=self._frame_id),
             color=ColorRGBA(0.0, 1.0, 0.0, 0.8),
             text=""
         )
