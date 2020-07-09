@@ -73,5 +73,26 @@
 			name="debug"
 			value="$(arg debug)"
 		 />
+		 <param
+			name="text_scale"
+			value="$(arg text_scale)"
+		 />
+		 <param
+			name="text_red_channel"
+			value="$(arg text_red_channel)"
+		 />
+		 <param
+			name="text_green_channel"
+			value="$(arg text_green_channel)"
+		 />
+		 <param
+			name="text_blue_channel"
+			value="$(arg text_blue_channel)"
+		 />
+		 <param
+			name="text_alpha_channel"
+			value="$(arg text_alpha_channel)"
+		 />
+
 	</node>
 </launch>
