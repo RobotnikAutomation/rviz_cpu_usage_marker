@@ -14,6 +14,11 @@ class CpuMarker:
             frame_id='rb1_base_map',
             topic_to_subscribe='/system_monitor/diagnostics',
             publish_topic_name='cpu_usage_marker',
+            text_scale=1,
+            text_red_channel=0.0,
+            text_green_channel=1.0,
+            text_blue_channel=0.0,
+            text_alpha_channel=0.8,
     ):
         rospy.init_node(node_name)
         try:
