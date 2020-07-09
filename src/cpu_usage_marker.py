@@ -14,6 +14,11 @@ class CpuMarker:
             frame_id='rb1_base_map',
             topic_to_subscribe='/system_monitor/diagnostics',
             publish_topic_name='cpu_usage_marker',
+            text_scale=1,
+            text_red_channel=0.0,
+            text_green_channel=1.0,
+            text_blue_channel=0.0,
+            text_alpha_channel=0.8,
     ):
         rospy.init_node(node_name)
         try:
@@ -49,6 +54,43 @@ class CpuMarker:
         except NameError:
             self._debug = False
 
+        try:
+            self._text_scale = rospy.get_param(
+                '~text_scale',
+                text_scale
+            )
+        except NameError:
+            self._text_scale = text_scale
+        try:
+            self._text_red_channel = rospy.get_param(
+                '~text_red_channel',
+                text_red_channel
+            )
+        except NameError:
+            self._text_red_channel = text_red_channel
+        try:
+            self._text_green_channel = rospy.get_param(
+                '~text_green_channel',
+                text_green_channel
+            )
+        except NameError:
+            self._text_green_channel = text_blue_channel
+
+        try:
+            self._text_blue_channel = rospy.get_param(
+                '~text_blue_channel',
+                text_blue_channel
+            )
+        except NameError:
+            self._text_blue_channel = text_blue_channel
+        try:
+            self._text_alpha_channel = rospy.get_param(
+                '~text_alpha_channel',
+                text_alpha_channel
+            )
+        except NameError:
+            self._text_alpha_channel = text_alpha_channel
+
         self._cpu_usage = rospy.Subscriber(
             name=self._topic_to_subscribe,
             data_class=Diagnostic,
@@ -64,9 +106,18 @@ class CpuMarker:
             id=0,
             lifetime=rospy.Duration(1.5),
             pose=Pose(Point(0, 0, 0), Quaternion(0, 0, 0, 1)),
-            scale=Vector3(1, 1, 1),
+            scale=Vector3(
+                self._text_scale,
+                self._text_scale,
+                self._text_scale
+            ),
             header=Header(frame_id=self._frame_id),
-            color=ColorRGBA(0.0, 1.0, 0.0, 0.8),
+            color=ColorRGBA(
+                self._text_red_channel,
+                self._text_green_channel,
+                self._text_blue_channel,
+                self._text_alpha_channel
+            ),
             text=""
         )
 
