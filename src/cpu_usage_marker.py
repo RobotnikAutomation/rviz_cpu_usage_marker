@@ -106,9 +106,18 @@ class CpuMarker:
             id=0,
             lifetime=rospy.Duration(1.5),
             pose=Pose(Point(0, 0, 0), Quaternion(0, 0, 0, 1)),
-            scale=Vector3(1, 1, 1),
+            scale=Vector3(
+                self._text_scale,
+                self._text_scale,
+                self._text_scale
+            ),
             header=Header(frame_id=self._frame_id),
-            color=ColorRGBA(0.0, 1.0, 0.0, 0.8),
+            color=ColorRGBA(
+                self._text_red_channel,
+                self._text_green_channel,
+                self._text_blue_channel,
+                self._text_alpha_channel
+            ),
             text=""
         )
 
