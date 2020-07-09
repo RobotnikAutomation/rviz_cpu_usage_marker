@@ -54,6 +54,43 @@ class CpuMarker:
         except NameError:
             self._debug = False
 
+        try:
+            self._text_scale = rospy.get_param(
+                '~text_scale',
+                text_scale
+            )
+        except NameError:
+            self._text_scale = text_scale
+        try:
+            self._text_red_channel = rospy.get_param(
+                '~text_red_channel',
+                text_red_channel
+            )
+        except NameError:
+            self._text_red_channel = text_red_channel
+        try:
+            self._text_green_channel = rospy.get_param(
+                '~text_green_channel',
+                text_green_channel
+            )
+        except NameError:
+            self._text_green_channel = text_blue_channel
+
+        try:
+            self._text_blue_channel = rospy.get_param(
+                '~text_blue_channel',
+                text_blue_channel
+            )
+        except NameError:
+            self._text_blue_channel = text_blue_channel
+        try:
+            self._text_alpha_channel = rospy.get_param(
+                '~text_alpha_channel',
+                text_alpha_channel
+            )
+        except NameError:
+            self._text_alpha_channel = text_alpha_channel
+
         self._cpu_usage = rospy.Subscriber(
             name=self._topic_to_subscribe,
             data_class=Diagnostic,
