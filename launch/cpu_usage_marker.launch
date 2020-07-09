@@ -23,6 +23,26 @@
 		name="frame_id"
 		default="$(optenv CPU_MARKER_FRAME_ID rb1_base_map)"
 	/>
+	<arg
+		name="text_scale"
+		default="$(optenv CPU_MARKER_TEXT_SCALE 1)"
+	/>
+	<arg
+		name="text_red_channel"
+		default="$(optenv CPU_MARKER_TEXT_RED_CHANNEL 0.0)"
+	/>
+	<arg
+		name="text_green_channel"
+		default="$(optenv CPU_MARKER_TEXT_GREEN_CHANNEL 1.0)"
+	/>
+	<arg
+		name="text_blue_channel"
+		default="$(optenv CPU_MARKER_TEXT_BLUE_CHANNEL 0.0)"
+	/>
+	<arg
+		name="text_alpha_channel"
+		default="$(optenv CPU_MARKER_TEXT_ALPHA_CHANNEL 0.8)"
+	/>
 	<include
 		file="$(find system_monitor)/launch/system_monitor.launch"
 	>
